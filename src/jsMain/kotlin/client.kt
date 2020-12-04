@@ -10,6 +10,12 @@ fun main() {
 					name = "Kotlin/JS"
 				}
 			}
+			child(Days::class) {
+				attrs {
+					days = 2
+					times = 17.53
+				}
+			}
 		}
 	}
 }

@@ -2,11 +2,16 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
 
 plugins {
     kotlin("multiplatform") version "1.4.10"
+    kotlin("plugin.serialization") version "1.4.10"
     application
 }
 
 group = "dev.ajthom90"
 version = "1.0-SNAPSHOT"
+
+val klockVersion = "2.0.1"
+val serializationVersion = "1.0.1"
+val ktorVersion = "1.4.0"
 
 repositories {
     jcenter()
@@ -49,13 +54,17 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
+                implementation("com.soywiz.korlibs.klock:klock:$klockVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
             }
         }
         val jvmMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-server-netty:1.4.0")
-                implementation("io.ktor:ktor-html-builder:1.4.0")
+                implementation("io.ktor:ktor-server-netty:$ktorVersion")
+                implementation("io.ktor:ktor-html-builder:$ktorVersion")
+                implementation("io.ktor:ktor-serialization:$ktorVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.2")
+                implementation("com.soywiz.korlibs.klock:klock-jvm:$klockVersion")
             }
         }
         val jvmTest by getting {
@@ -78,7 +87,7 @@ kotlin {
 }
 
 application {
-    mainClassName = "ServerKt"
+    mainClassName = "dev.ajthom90.slowthespread.ServerKt"
 }
 
 tasks.getByName<KotlinWebpack>("jsBrowserProductionWebpack") {

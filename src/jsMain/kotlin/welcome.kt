@@ -14,6 +14,7 @@ external interface WelcomeProps : RProps {
 
 data class WelcomeState(val name: String) : RState
 
+@ExperimentalJsExport
 @JsExport
 class Welcome(props: WelcomeProps) : RComponent<WelcomeProps, WelcomeState>(props) {
 
@@ -33,6 +34,36 @@ class Welcome(props: WelcomeProps) : RComponent<WelcomeProps, WelcomeState>(prop
 					setState(
 						WelcomeState(name = (event.target as HTMLInputElement).value)
 					)
+				}
+			}
+		}
+	}
+}
+
+external interface DaysProps: RProps {
+	var days: Int
+	var times: Double
+}
+
+data class DaysState(val days: Int, val times: Double): RState
+
+@ExperimentalJsExport
+@JsExport
+class Days(props: DaysProps): RComponent<DaysProps, DaysState>(props) {
+	init {
+		state = DaysState(props.days, props.times)
+	}
+
+	override fun RBuilder.render() {
+		div {
+			+"Hello Days"
+		}
+		input {
+			attrs {
+				type = InputType.number
+				value = state.days.toString()
+				onChangeFunction = { event ->
+					setState(DaysState(days = 7, times = 47.2))
 				}
 			}
 		}
