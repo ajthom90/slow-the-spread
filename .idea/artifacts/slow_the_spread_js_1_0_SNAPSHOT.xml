@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="slow-the-spread-js-1.0-SNAPSHOT">
+    <output-path>$PROJECT_DIR$/build/libs</output-path>
+    <root id="archive" name="slow-the-spread-js-1.0-SNAPSHOT.jar">
+      <element id="module-output" name="slow-the-spread.jsMain" />
+    </root>
+  </artifact>
+</component>
